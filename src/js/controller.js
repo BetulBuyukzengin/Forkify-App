@@ -5,6 +5,7 @@ import 'regenerator-runtime/runtime'; // pollyfilling async/await
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
+//import bookmarksView from './views/bookmarksView.js';
 
 const controlRecipes = async function () {
   try {
@@ -70,11 +71,24 @@ const controlServings = function (newServings) {
   //recipeView.render(model.state.recipe);
   recipeView.update(model.state.recipe);
 };
+
+//! Implementing Bookmarks
+const controlAddBookmark = function () {
+  //Add
+  if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
+  //Delete
+  else model.deleteBookmark(model.state.recipe.id);
+
+  //update
+  recipeView.update(model.state.recipe);
+};
+
 //*Controllerdaki bir işlevi view de çağıramayız bu sebeple publisher-subscriber pattern kullanıldı
 //SUBSCRIBER: code that wants to react
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
+  recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };
