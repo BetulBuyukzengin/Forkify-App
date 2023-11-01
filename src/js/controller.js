@@ -11,21 +11,24 @@ const controlRecipes = async function () {
   try {
     // find hash
     const id = window.location.hash.slice(1);
-    console.log(id);
+    //console.log(id);
 
     if (!id) return;
     // show spinner
     recipeView.renderSpinner();
 
-    // 0) Update results view  to mark selected search result
+    //0 ) Update results view  to mark selected search result
     resultsView.update(model.getSearchResultsPage());
+
+    //1 ) updating bookmarks view
     bookmarksView.update(model.state.bookmarks);
-    // 1)Loading recipe
+
+    //2 )Loading recipe
     await model.loadRecipe(id);
     //const { recipe } = model.state;
     //const recipe=model.state.recipe;
 
-    //2) Rendering recipe
+    //3 ) Rendering recipe
     recipeView.render(model.state.recipe);
     //or const recipeView=new recipeView(model.state.recipe)
   } catch (err) {
@@ -50,7 +53,7 @@ const controlSearchResults = async function () {
     //4-render initial pagination buttons
     paginationView.render(model.state.search);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 const controlPagination = function (goToPage) {
@@ -59,7 +62,7 @@ const controlPagination = function (goToPage) {
 
   //4-render initial pagination buttons
   paginationView.render(model.state.search);
-  console.log(goToPage);
+  // console.log(goToPage);
 };
 
 //! Updating Recipe Servings
@@ -85,10 +88,13 @@ const controlAddBookmark = function () {
   //3)render bookmarks
   bookmarksView.render(model.state.bookmarks);
 };
-
+const controlBookmarks = function () {
+  bookmarksView.render(model.state.bookmarks);
+};
 //*Controllerdaki bir işlevi view de çağıramayız bu sebeple publisher-subscriber pattern kullanıldı
 //SUBSCRIBER: code that wants to react
 const init = function () {
+  bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
