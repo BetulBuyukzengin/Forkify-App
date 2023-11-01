@@ -6,6 +6,7 @@ import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
+import addRecipeView from './views/addRecipeView.js';
 
 const controlRecipes = async function () {
   try {
@@ -91,6 +92,12 @@ const controlAddBookmark = function () {
 const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
+//! yeni recipe ekleme kontrolü
+const controlAddRecipe = function (newRecipe) {
+  console.log(newRecipe);
+
+  //upload the new recipe data
+};
 //*Controllerdaki bir işlevi view de çağıramayız bu sebeple publisher-subscriber pattern kullanıldı
 //SUBSCRIBER: code that wants to react
 const init = function () {
@@ -100,5 +107,6 @@ const init = function () {
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
+  addRecipeView._addHandlerUpload(controlAddRecipe);
 };
 init();
