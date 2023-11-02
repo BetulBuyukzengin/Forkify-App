@@ -30,7 +30,7 @@ export const loadRecipe = async function (id) {
     if (state.bookmarks.some(bookmark => bookmark.id === id))
       state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
-    console.log(state.recipe);
+    //console.log(state.recipe);
   } catch (err) {
     //temp error handling
     console.error(`${err} 🧨🧨🧨`);
@@ -111,3 +111,25 @@ const clearBookmarks = function () {
   localStorage.clear('bookmarks');
 };
 //clearBookmarks();
+
+//! Uploading a New Recipe : eklenen yeni tarifi apı ye gonderme
+//api ye istekte bulunmak içi async
+export const uploadRecipe = async function (newRecipe) {
+  try {
+    //console.log(Object.entries(newRecipe)); //nesne diziye dönüştürdü
+    const ingredients = Object.entries(newRecipe)
+      .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
+      .map(ing => {
+        const ingArr = ing[1].replaceAll(' ', '').split(',');
+        if (ingArr.length !== 3)
+          throw new Error(
+            'Wrong ingredient format! Please use the correct format'
+          );
+        const [quantity, unit, description] = ingArr;
+        return { quantity: quantity ? +quantity : null, unit, description };
+      });
+    console.log(ingredients);
+  } catch (err) {
+    throw err;
+  }
+};

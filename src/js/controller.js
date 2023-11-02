@@ -7,6 +7,7 @@ import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
+import { async } from 'regenerator-runtime';
 
 const controlRecipes = async function () {
   try {
@@ -93,10 +94,16 @@ const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 //! yeni recipe ekleme kontrolü
-const controlAddRecipe = function (newRecipe) {
-  console.log(newRecipe);
-
-  //upload the new recipe data
+const controlAddRecipe = async function (newRecipe) {
+  //console.log(newRecipe);
+  try {
+    //upload the new recipe data
+    await model.uploadRecipe(newRecipe);
+  } catch (err) {
+    //* uploadRecipe da fırlatılan hatayı yakalamak için try-catch
+    console.error('🧨🧨', err);
+    addRecipeView.renderError(err.message);
+  }
 };
 //*Controllerdaki bir işlevi view de çağıramayız bu sebeple publisher-subscriber pattern kullanıldı
 //SUBSCRIBER: code that wants to react
