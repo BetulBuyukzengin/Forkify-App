@@ -156,7 +156,7 @@ export const uploadRecipe = async function (newRecipe) {
       servings: +newRecipe.servings,
       ingredients,
     };
-    //* Tarifi geri göndermek için ajax isteği
+    //* Tarifi  göndermek için ajax isteği
     const data = await sendJSON(`${API_URL}?key=${KEY}`, recipe);
     state.recipe = createRecipeObject(data);
     //?yeni tarif yer imlerine eklendi
