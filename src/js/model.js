@@ -1,5 +1,5 @@
-import { API_URL, RESULTS_PER_PAGE, STARTER_PAGE } from './config.js';
-import { getJSON } from './helpers.js';
+import { API_URL, RESULTS_PER_PAGE, STARTER_PAGE, KEY } from './config.js';
+import { getJSON, sendJSON } from './helpers.js';
 
 export const state = {
   recipe: {},
@@ -12,11 +12,28 @@ export const state = {
   bookmarks: [],
 };
 
+const createRecipeObject = function (data) {
+  const { recipe } = data.data;
+  return {
+    id: recipe.id,
+    title: recipe.title,
+    publisher: recipe.publisher,
+    sourceUrl: recipe.source_url,
+    image: recipe.image_url,
+    servings: recipe.servings,
+    cookingTime: recipe.cooking_time,
+    ingredients: recipe.ingredients,
+    //? Kısa devre= Eğer key varsa --> key:recipe.key objesi ekle
+    ...(recipe.key && { key: recipe.key }), //key:recipe.key
+  };
+};
+
 export const loadRecipe = async function (id) {
   try {
     const data = await getJSON(`${API_URL}${id}`);
-    const { recipe } = data.data;
-    state.recipe = {
+    state.recipe = createRecipeObject(data);
+    /* const { recipe } = data.data;
+    state.recipe={
       id: recipe.id,
       title: recipe.title,
       publisher: recipe.publisher,
@@ -26,11 +43,12 @@ export const loadRecipe = async function (id) {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     };
+ */
     //? kaydedilen recipe tekrar tıklandığında kayıtlı halini koruyacak
     if (state.bookmarks.some(bookmark => bookmark.id === id))
       state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
-    //console.log(state.recipe);
+    console.log(state.recipe);
   } catch (err) {
     //temp error handling
     console.error(`${err} 🧨🧨🧨`);
@@ -128,7 +146,21 @@ export const uploadRecipe = async function (newRecipe) {
         const [quantity, unit, description] = ingArr;
         return { quantity: quantity ? +quantity : null, unit, description };
       });
-    console.log(ingredients);
+    //! Eklenen yeni recipe için obje oluşumu
+    const recipe = {
+      title: newRecipe.title,
+      source_url: newRecipe.sourceUrl,
+      image_url: newRecipe.image,
+      publisher: newRecipe.publisher,
+      cooking_time: +newRecipe.cookingTime,
+      servings: +newRecipe.servings,
+      ingredients,
+    };
+    //* Tarifi geri göndermek için ajax isteği
+    const data = await sendJSON(`${API_URL}?key=${KEY}`, recipe);
+    state.recipe = createRecipeObject(data);
+    //?yeni tarif yer imlerine eklendi
+    addBookmark(state.recipe);
   } catch (err) {
     throw err;
   }

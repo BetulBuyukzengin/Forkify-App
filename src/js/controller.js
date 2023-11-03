@@ -1,12 +1,14 @@
 import * as model from './model.js';
+import { MODAL_CLOSE_SEC } from './config.js';
 import recipeView from './views/recipeView.js';
-import 'core-js/stable'; // polyfilling for everything except await/async
-import 'regenerator-runtime/runtime'; // pollyfilling async/await
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
+
+import 'core-js/stable'; // polyfilling for everything except await/async
+import 'regenerator-runtime/runtime'; // pollyfilling async/await
 import { async } from 'regenerator-runtime';
 
 const controlRecipes = async function () {
@@ -97,8 +99,23 @@ const controlBookmarks = function () {
 const controlAddRecipe = async function (newRecipe) {
   //console.log(newRecipe);
   try {
-    //upload the new recipe data
+    //* show loading spinner
+    addRecipeView.renderSpinner();
+
+    //* upload the new recipe data
     await model.uploadRecipe(newRecipe);
+    console.log(model.state.recipe);
+
+    //* Render recipe
+    recipeView.render(model.state.recipe);
+
+    //* Success message
+    addRecipeView.renderMessage();
+
+    //* close form window
+    setTimeout(function () {
+      addRecipeView.toggleWindow();
+    }, MODAL_CLOSE_SEC * 1000);
   } catch (err) {
     //* uploadRecipe da fırlatılan hatayı yakalamak için try-catch
     console.error('🧨🧨', err);
