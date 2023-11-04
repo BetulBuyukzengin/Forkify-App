@@ -1,7 +1,7 @@
 # Forkify-App
-# Forkify-App
 <!--Forkify-App i, The Complate Javascript Course - 'Jonas Schmedtmann' eşliğinde  oluşturdum.-->
 ## Bu uygulamada forkify API' ını kullanarak yemek tarifi uygulamasını oluşturdum.
+
 ### Bu uygulamada yapabilecekleriniz:
 * Spesifik bir **yemek** veya **malzeme** için arama yapabilirsiniz.
 * Daha fazla tarife ulaşmak için sayfalandırma kısmındaki butonları kullanabilirsiniz.
@@ -11,19 +11,26 @@
 * **Add Recipe** butonundan kendi tariflerinizi ekleyebilir ve bu tariflerinize yer imlerinden erişeilirsiniz.
 
 ### 🔍 Uygulamayı kullanırken kullanabileceğiniz bazı anahtar kelimeler :
-####  - 🍅 Tomato - 🍕 Pizza - 🍝 Pasta - 🌶 Pepper - 🍔 Burgers - 🍗 Meat - vb.
+
+####  🍅 Tomato - 🍕 Pizza - 🍝 Pasta - 🌶 Pepper - 🍔 Burgers - 🍗 Meat - vb.
+
+<br>
+
+### Arama çubuğuna yazacağınız yemeklerin tariflerine erişimi
+
+<br>
 
 ![Forkify-App](src/img/img1.png)
-<br>
-### Arama çubuğuna yazacağınız yemeklerin tariflerine erişimi
-<br>
-![Forkify-App](src/img/img2.png)
-<br>
-### Seçilen tarife ait malzemeler ekranın sağ tarafında gösterilmekte. 
-<br>
-![Forkify-App](src/img/img3.png)
-![Forkify-App](src/img/img4.png)
 
+### Seçilen tarife ait malzemeler ekranın sağ tarafında gösterilmekte. 
+
+<br>
+
+![Forkify-App](src/img/img2.png)
+
+### **Add Recipe** butonuna basıldığında tarif oluşturmak için gelen modal yapısı :
+
+![Forkify-App](src/img/img4.png)
 
 ## 🔴 Live version of project :
  <h3><a href="https://forkify-app-kadir.netlify.app/">Forkify-App</a></h3>
