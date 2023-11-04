@@ -3,6 +3,17 @@ import icons from 'url:../../img/icons.svg';
 //Alt view sınıfların üst sınıfı
 export default class View {
   _data;
+
+  /**
+   * (Render the received object to the DOM) Alınan nesneyi DOM a aktarma
+   * @param {Object | Object[]} (The data to be rendered ) İşlenecek veriler (recipe)
+   * @param {boolean} [render=true] (If false, create markup string instead of rendering to the DOM) Eğer false ise DOM a işlemek yerine markup dizesi oluştur
+   * @returns {undefined | string} (A markup string is returned if render=false) Render edilirse markup geri döner false ise geri dönmez
+   * @this {Object} View instance
+   * @author Betul Buyukzengin
+   * @todo Finish implementation
+   */
+
   render(data, render = true) {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
@@ -15,6 +26,7 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
   //! developing a dom updating algorithm:  Böylece porsiyon güncellendikçe sayfa yeniden yüklenmeyecek sadece değişen değerler
+
   update(data) {
     /*  if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError(); */

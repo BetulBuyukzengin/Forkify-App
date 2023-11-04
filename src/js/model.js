@@ -1,6 +1,6 @@
 import { API_URL, RESULTS_PER_PAGE, STARTER_PAGE, KEY } from './config.js';
-import { getJSON, sendJSON } from './helpers.js';
-
+// import { getJSON, sendJSON } from './helpers.js';
+import { AJAX } from './helpers.js';
 export const state = {
   recipe: {},
   search: {
@@ -30,7 +30,9 @@ const createRecipeObject = function (data) {
 
 export const loadRecipe = async function (id) {
   try {
-    const data = await getJSON(`${API_URL}${id}`);
+    // const data = await getJSON(`${API_URL}${id}`);
+    //key ile yeni recipe i arama sonuçlarında gösterme
+    const data = await AJAX(`${API_URL}${id}?key=${KEY}`);
     state.recipe = createRecipeObject(data);
     /* const { recipe } = data.data;
     state.recipe={
@@ -59,7 +61,9 @@ export const loadRecipe = async function (id) {
 export const loadSearchResults = async function (query) {
   try {
     state.search.query = query; //daha sonra aramaları analiz etmede kullanılacak
-    const data = await getJSON(`${API_URL}?search=${query}`);
+    // const data = await getJSON(`${API_URL}?search=${query}`);
+    const data = await AJAX(`${API_URL}?search=${query}&key=${KEY}`);
+
     console.log(data);
 
     state.search.results = data.data.recipes.map(rec => {
@@ -68,6 +72,7 @@ export const loadSearchResults = async function (query) {
         title: rec.title,
         publisher: rec.publisher,
         image: rec.image_url,
+        ...(rec.key && { key: rec.key }),
       };
     });
     state.search.page = STARTER_PAGE; //arama yapıldıgında her gelen sonuç 1 den başlar
@@ -138,7 +143,8 @@ export const uploadRecipe = async function (newRecipe) {
     const ingredients = Object.entries(newRecipe)
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       .map(ing => {
-        const ingArr = ing[1].replaceAll(' ', '').split(',');
+        const ingArr = ing[1].split(',').map(el => el.trim());
+        // const ingArr = ing[1].replaceAll(' ', '').split(',');
         if (ingArr.length !== 3)
           throw new Error(
             'Wrong ingredient format! Please use the correct format'
@@ -157,7 +163,8 @@ export const uploadRecipe = async function (newRecipe) {
       ingredients,
     };
     //* Tarifi  göndermek için ajax isteği
-    const data = await sendJSON(`${API_URL}?key=${KEY}`, recipe);
+    // const data = await sendJSON(`${API_URL}?key=${KEY}`, recipe);
+    const data = await AJAX(`${API_URL}?key=${KEY}`, recipe);
     state.recipe = createRecipeObject(data);
     //?yeni tarif yer imlerine eklendi
     addBookmark(state.recipe);
