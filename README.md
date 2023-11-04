@@ -20,17 +20,17 @@
 
 <br>
 
-![Forkify-App](src/img/img1.png)
+![Forkify-App](src/img/tarifler.png)
 
 ### Seçilen tarife ait malzemeler ekranın sağ tarafında gösterilmekte. 
 
 <br>
 
-![Forkify-App](src/img/img2.png)
+![Forkify-App](src/img/malzemeler.png)
 
 ### **Add Recipe** butonuna basıldığında tarif oluşturmak için gelen modal yapısı :
 
-![Forkify-App](src/img/img4.png)
+![Forkify-App](src/img/modal.png)
 
 ## 🔴 Live version of project :
  <h3><a href="https://forkify-app-kadir.netlify.app/">Forkify-App</a></h3>
