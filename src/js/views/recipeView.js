@@ -1,7 +1,6 @@
 import View from './View.js';
-//import icons from '../img/icons.svg';
 import icons from 'url:../../img/icons.svg';
-import { Fraction } from 'fractional';
+import fracty from 'fracty';
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
   _errorMessage = 'We couldn not find that recipe. Please try another one!';
@@ -9,7 +8,6 @@ class RecipeView extends View {
   _data;
   render(data) {
     this._data = data;
-    //console.log(this._data);
     const markup = this._generateMarkup();
     this._clear();
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
@@ -17,16 +15,6 @@ class RecipeView extends View {
   _clear() {
     this._parentElement.innerHTML = '';
   }
-  /* renderSpinner() {
-    const markup = `
-          <div class="spinner">
-            <svg>
-               <use href="${icons}#icon-loader"></use>
-            </svg>
-          </div>`;
-    this._clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
-  } */
   renderError(message = this._errorMessage) {
     const markup = `
     <div class="error">
@@ -153,14 +141,12 @@ class RecipeView extends View {
       </a>
     </div>`;
   }
-  //PUBLISHER: code that knows when to react:
+  //*PUBLISHER: code that knows when to react:
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
-    /* window.addEventListener('hashchange',controlRecipes)
-    window.addEventListener('load',controlRecipes) */
   }
   //! UPDATING RECIPE SERVINGS
-  //? Event Delegation : Sayfa ilk yüklendiğinde btn gelmeyeceğinden btn ye addEventListener yapamayız bu sebeple event del. yapılıyor
+  //* Event Delegation
   addHandlerUpdateServings(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--update-servings');
@@ -185,7 +171,7 @@ class RecipeView extends View {
         <use href="${icons}#icon-check"></use>
       </svg>
       <div class="recipe__quantity">${
-        ing.quantity ? new Fraction(ing.quantity).toString() : ''
+        ing.quantity ? fracty(ing.quantity).toString() : ''
       }</div>
       <div class="recipe__description">
         <span class="recipe__unit">${ing.unit}</span>
@@ -195,5 +181,4 @@ class RecipeView extends View {
       `;
   }
 }
-//performans açısından tüm class yerine örneği exportladı
 export default new RecipeView();

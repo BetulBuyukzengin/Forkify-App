@@ -1,9 +1,7 @@
-//resultsView.js ve bookmarksView.js in ana Viewi(ortak)
 import icons from 'url:../../img/icons.svg';
 import View from './View.js';
 class PreviewView extends View {
   _parentElement = '';
-
   _generateMarkup() {
     const id = window.location.hash.slice(1);
     return `

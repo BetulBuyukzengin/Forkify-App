@@ -7,16 +7,10 @@ import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
 
-import 'core-js/stable'; // polyfilling for everything except await/async
-import 'regenerator-runtime/runtime'; // pollyfilling async/await
-import { async } from 'regenerator-runtime';
-
 const controlRecipes = async function () {
   try {
     // find hash
     const id = window.location.hash.slice(1);
-    //console.log(id);
-
     if (!id) return;
     // show spinner
     recipeView.renderSpinner();
@@ -29,12 +23,9 @@ const controlRecipes = async function () {
 
     //2 )Loading recipe
     await model.loadRecipe(id);
-    //const { recipe } = model.state;
-    //const recipe=model.state.recipe;
 
     //3 ) Rendering recipe
     recipeView.render(model.state.recipe);
-    //or const recipeView=new recipeView(model.state.recipe)
   } catch (err) {
     recipeView.renderError();
   }
@@ -48,10 +39,9 @@ const controlSearchResults = async function () {
     const query = searchView.getQuery();
     if (!query) return;
 
-    //2-load search results  -  herhangi bir şey döndürmediğinden değişekende saklamaya gerek yok
+    //2-load search results
     await model.loadSearchResults(query);
     //3-render results
-    //  resultsView.render(model.state.search.results) ->tüm sonuçları getirir
     resultsView.render(model.getSearchResultsPage());
 
     //4-render initial pagination buttons
@@ -63,10 +53,8 @@ const controlSearchResults = async function () {
 const controlPagination = function (goToPage) {
   //3-render new results
   resultsView.render(model.getSearchResultsPage(goToPage));
-
   //4-render initial pagination buttons
   paginationView.render(model.state.search);
-  // console.log(goToPage);
 };
 
 //! Updating Recipe Servings
@@ -75,7 +63,6 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   //update the recipe view
-  //recipeView.render(model.state.recipe);
   recipeView.update(model.state.recipe);
 };
 
@@ -95,9 +82,8 @@ const controlAddBookmark = function () {
 const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
-//! yeni recipe ekleme kontrolü
+//!  new recipe control added
 const controlAddRecipe = async function (newRecipe) {
-  //console.log(newRecipe);
   try {
     //* show loading spinner
     addRecipeView.renderSpinner();
@@ -116,8 +102,7 @@ const controlAddRecipe = async function (newRecipe) {
     bookmarksView.render(model.state.bookmarks);
 
     //* change ID in URL without reload the page
-    window.history.pushState(null, '', `#${model.state.recipe.id}`); //2.başlık,3. url
-    //window.history.back();bir önceki sayfayı getirir
+    window.history.pushState(null, '', `#${model.state.recipe.id}`);
     //* close form window
     setTimeout(function () {
       addRecipeView.toggleWindow();
@@ -128,7 +113,6 @@ const controlAddRecipe = async function (newRecipe) {
     addRecipeView.renderError(err.message);
   }
 };
-//*Controllerdaki bir işlevi view de çağıramayız bu sebeple publisher-subscriber pattern kullanıldı
 //SUBSCRIBER: code that wants to react
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);

@@ -23,49 +23,30 @@ const createRecipeObject = function (data) {
     servings: recipe.servings,
     cookingTime: recipe.cooking_time,
     ingredients: recipe.ingredients,
-    //? Kısa devre= Eğer key varsa --> key:recipe.key objesi ekle
     ...(recipe.key && { key: recipe.key }), //key:recipe.key
   };
 };
 
 export const loadRecipe = async function (id) {
   try {
-    // const data = await getJSON(`${API_URL}${id}`);
-    //key ile yeni recipe i arama sonuçlarında gösterme
     const data = await AJAX(`${API_URL}${id}?key=${KEY}`);
     state.recipe = createRecipeObject(data);
-    /* const { recipe } = data.data;
-    state.recipe={
-      id: recipe.id,
-      title: recipe.title,
-      publisher: recipe.publisher,
-      sourceUrl: recipe.source_url,
-      image: recipe.image_url,
-      servings: recipe.servings,
-      cookingTime: recipe.cooking_time,
-      ingredients: recipe.ingredients,
-    };
- */
-    //? kaydedilen recipe tekrar tıklandığında kayıtlı halini koruyacak
     if (state.bookmarks.some(bookmark => bookmark.id === id))
       state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
     console.log(state.recipe);
   } catch (err) {
-    //temp error handling
+    //* temp error handling
     console.error(`${err} 🧨🧨🧨`);
-    throw err; //controllerda yakalamak için fırlatıyoruz, viewdeki renderError() metoduyla buradaki hata arasında controller köprü olacak
+    throw err;
   }
 };
 //! Implementing Search Results
 export const loadSearchResults = async function (query) {
   try {
-    state.search.query = query; //daha sonra aramaları analiz etmede kullanılacak
+    state.search.query = query;
     // const data = await getJSON(`${API_URL}?search=${query}`);
     const data = await AJAX(`${API_URL}?search=${query}&key=${KEY}`);
-
-    console.log(data);
-
     state.search.results = data.data.recipes.map(rec => {
       return {
         id: rec.id,
@@ -75,7 +56,7 @@ export const loadSearchResults = async function (query) {
         ...(rec.key && { key: rec.key }),
       };
     });
-    state.search.page = STARTER_PAGE; //arama yapıldıgında her gelen sonuç 1 den başlar
+    state.search.page = STARTER_PAGE;
   } catch (err) {
     console.error(`${err} 🧨🧨🧨`);
     throw err;
@@ -83,7 +64,7 @@ export const loadSearchResults = async function (query) {
 };
 //! PAGINATION
 export const getSearchResultsPage = function (page = state.search.page) {
-  state.search.page = page; // sayfa güncelleme - updating current page into state
+  state.search.page = page;
   const start = (page - 1) * state.search.resultsPerPage;
   const end = page * state.search.resultsPerPage;
 
@@ -126,7 +107,7 @@ export const deleteBookmark = function (id) {
 //! localStorage getItem
 const init = function () {
   const storage = localStorage.getItem('bookmarks');
-  if (storage) state.bookmarks = JSON.parse(storage); //stringi nesneye dönüştürür
+  if (storage) state.bookmarks = JSON.parse(storage);
 };
 init();
 
@@ -135,16 +116,13 @@ const clearBookmarks = function () {
 };
 //clearBookmarks();
 
-//! Uploading a New Recipe : eklenen yeni tarifi apı ye gonderme
-//api ye istekte bulunmak içi async
+//! Uploading a New Recipe
 export const uploadRecipe = async function (newRecipe) {
   try {
-    //console.log(Object.entries(newRecipe)); //nesne diziye dönüştürdü
     const ingredients = Object.entries(newRecipe)
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       .map(ing => {
         const ingArr = ing[1].split(',').map(el => el.trim());
-        // const ingArr = ing[1].replaceAll(' ', '').split(',');
         if (ingArr.length !== 3)
           throw new Error(
             'Wrong ingredient format! Please use the correct format'
@@ -152,7 +130,7 @@ export const uploadRecipe = async function (newRecipe) {
         const [quantity, unit, description] = ingArr;
         return { quantity: quantity ? +quantity : null, unit, description };
       });
-    //! Eklenen yeni recipe için obje oluşumu
+    //*  new object created for new recipe
     const recipe = {
       title: newRecipe.title,
       source_url: newRecipe.sourceUrl,
@@ -162,11 +140,9 @@ export const uploadRecipe = async function (newRecipe) {
       servings: +newRecipe.servings,
       ingredients,
     };
-    //* Tarifi  göndermek için ajax isteği
     // const data = await sendJSON(`${API_URL}?key=${KEY}`, recipe);
     const data = await AJAX(`${API_URL}?key=${KEY}`, recipe);
     state.recipe = createRecipeObject(data);
-    //?yeni tarif yer imlerine eklendi
     addBookmark(state.recipe);
   } catch (err) {
     throw err;

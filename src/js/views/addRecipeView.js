@@ -1,6 +1,4 @@
 import View from './View.js';
-import icons from 'url:../../img/icons.svg';
-
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
   _message = 'Recipe was successfully uploaded';
@@ -18,7 +16,6 @@ class AddRecipeView extends View {
     this._overlay.classList.toggle('hidden');
     this._window.classList.toggle('hidden');
   }
-  //Farklı herhangi bir işlem yaptırmayacağı için controllerda çağırmaya gerek yok bu yüzden uygulama başladığında gelmeli (constructor)
   _addHandlerShowWindow() {
     this._btnOpen.addEventListener('click', this.toggleWindow.bind(this));
   }
@@ -29,8 +26,8 @@ class AddRecipeView extends View {
   _addHandlerUpload(handler) {
     this._parentElement.addEventListener('submit', function (e) {
       e.preventDefault();
-      const dataArr = [...new FormData(this)]; // formdata yı diziye çeviriyor
-      const data = Object.fromEntries(dataArr); // key ve value ile beraber objeye dönüştürüyor
+      const dataArr = [...new FormData(this)];
+      const data = Object.fromEntries(dataArr);
       handler(data);
     });
   }
