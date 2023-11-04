@@ -1,28 +1,28 @@
 # Forkify-App
 # Forkify-App
-<!--Bu uygulamada bir yemek tarif uygulamasını The Complate Javascript Course - 'Jonas Schmedtmann' eşliğinde  oluşturdum.-->
-## In this application i create a food-recipe project with forkify API.
-### What you can do with this application ❔
-* You can search for a **recipe**.
-* You can change the **servings** of the recipe you choose to suit your needs.
-* You can add a **bookmark** to the recipes you like.
-* You can access a site with directions for the food you choose from the '**Directions**' button.
-* You can access more recipes from the **pagination section** below the food results.
-* And of course you can **add your own** recipes and access them later.
+<!--Forkify-App i, The Complate Javascript Course - 'Jonas Schmedtmann' eşliğinde  oluşturdum.-->
+## Bu uygulamada forkify API' ını kullanarak yemek tarifi uygulamasını oluşturdum.
+### Bu uygulamada yapabilecekleriniz:
+* Spesifik bir **yemek** veya **malzeme** için arama yapabilirsiniz.
+* Daha fazla tarife ulaşmak için sayfalandırma kısmındaki butonları kullanabilirsiniz.
+* İhtiyacınıza göre porsiyonları ayarlayabilirsiniz.
+* Seçilen tarifin detaylarına erişebilmek için **Directions** butonunu kullanabilirsiniz.
+* Beğendiğiniz tarifleri **yer imine** ekleyebilirsiniz.
+* **Add Recipe** butonundan kendi tariflerinizi ekleyebilir ve bu tariflerinize yer imlerinden erişeilirsiniz.
 
-### 🔍 Here are some sample search keys to use the application :
-#### 🍕 Pizza - 🍜 Soup - 🥑 Avocado - 🍝 Pasta - Dip - 🍔 Burgers - 🍞 Bread - 🍳 Cooking - And so on and so forth.
+### 🔍 Uygulamayı kullanırken kullanabileceğiniz bazı anahtar kelimeler :
+####  - 🍅 Tomato - 🍕 Pizza - 🍝 Pasta - 🌶 Pepper - 🍔 Burgers - 🍗 Meat - vb.
 
 ![Forkify-App](src/img/img1.png)
 <br>
-### 👩‍🍳 Click on a recipe and get access to all ingredients, cooking time, number of servings and more.
+### Arama çubuğuna yazacağınız yemeklerin tariflerine erişimi
 <br>
-
 ![Forkify-App](src/img/img2.png)
-
+<br>
+### Seçilen tarife ait malzemeler ekranın sağ tarafında gösterilmekte. 
+<br>
 ![Forkify-App](src/img/img3.png)
 ![Forkify-App](src/img/img4.png)
-![Forkify-App](src/img/img5.png)
 
 
 ## 🔴 Live version of project :
