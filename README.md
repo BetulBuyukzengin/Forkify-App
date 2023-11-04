@@ -13,14 +13,17 @@
 ### 🔍 Here are some sample search keys to use the application :
 #### 🍕 Pizza - 🍜 Soup - 🥑 Avocado - 🍝 Pasta - Dip - 🍔 Burgers - 🍞 Bread - 🍳 Cooking - And so on and so forth.
 
-![Forkify-App](src/img/Forkify-Search.png)
+![Forkify-App](src/img/img1.png)
 <br>
 ### 👩‍🍳 Click on a recipe and get access to all ingredients, cooking time, number of servings and more.
 <br>
 
-![Forkify-App](src/img/Forkify-Recipe-Opened.png)
+![Forkify-App](src/img/img2.png)
 
-![Forkify-App](src/img/Forkify-Recipe-Ingredients.png)
+![Forkify-App](src/img/img3.png)
+![Forkify-App](src/img/img4.png)
+![Forkify-App](src/img/img5.png)
+
 
 ## 🔴 Live version of project :
  <h3><a href="https://forkify-app-kadir.netlify.app/">Forkify-App</a></h3>
