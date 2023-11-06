@@ -50,3 +50,4 @@
 
 #### Projenin bağımlılıkları :
 * "fracty": "^1.0.0"
+* "parcel": "^2.10.1"
