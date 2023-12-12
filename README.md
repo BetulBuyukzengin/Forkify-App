@@ -1,7 +1,9 @@
-# Forkify-App
+# <h1 align="center"> Forkify-App</h1>
 <!--Forkify-App i, The Complate Javascript Course - 'Jonas Schmedtmann' eşliğinde  oluşturdum.-->
 ## Bu uygulamada forkify API' ını kullanarak yemek tarifi uygulamasını oluşturdum.
 
+## 🔴Projenin deploy edilmiş versiyonu : <h3><a href="https://forkify-betul.netlify.app/">Forkify-App</a></h3>
+ 
 ### Bu uygulamada yapabilecekleriniz:
 * Spesifik bir **yemek** veya **malzeme** için arama yapabilirsiniz.
 * Daha fazla tarife ulaşmak için sayfalandırma kısmındaki butonları kullanabilirsiniz.
@@ -32,8 +34,7 @@
 
 ![Forkify-App](src/img/modal.png)
 
-## 🔴Projenin deploy edilmiş versiyonu :
- <h3><a href="https://forkify-betul.netlify.app/">Forkify-App</a></h3>
+
 
 ### - 🛠 Kullandığım teknolojiler :
  <img src="https://img.shields.io/badge/-JavaScript-black?style=flat&logo=javascript"/> <img src="https://img.shields.io/badge/-SCSS-pink?style=flat&logo=scss"/> <img src="https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white"> <a href="https://parceljs.org/">![PARCEL](https://img.shields.io/badge/-PARCEL-orange?style=flat&logo=parcel")</a> <a href="https://forkify-api.herokuapp.com/v2"><img src="https://img.shields.io/badge/FORKIFY-API-gray"></a> <a href="https://tr.wikipedia.org/wiki/Model-View-Controller">![MVC](https://img.shields.io/badge/-MVC-white)</a>
