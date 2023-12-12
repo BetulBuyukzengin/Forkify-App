@@ -2,7 +2,7 @@
 <!--Forkify-App i, The Complate Javascript Course - 'Jonas Schmedtmann' eşliğinde  oluşturdum.-->
 ## Bu uygulamada forkify API' ını kullanarak yemek tarifi uygulamasını oluşturdum.
 
-## 🔴Projenin deploy edilmiş versiyonu : <h3><a href="https://forkify-betul.netlify.app/">Forkify-App</a></h3>
+##  <h3>🔴Projenin deploy edilmiş versiyonu :<a href="https://forkify-betul.netlify.app/">Forkify-App</a></h3>
  
 ### Bu uygulamada yapabilecekleriniz:
 * Spesifik bir **yemek** veya **malzeme** için arama yapabilirsiniz.
