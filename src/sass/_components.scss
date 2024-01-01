@@ -60,14 +60,18 @@
   font-size: 1.3rem;
   font-weight: 600;
   border: none;
-  background-color: $color-grey-light-1;
+  background-color: #f7f6f6;;
   padding: 0.8rem 1.2rem;
   border-radius: 10rem;
   cursor: pointer;
 
   display: flex;
   align-items: center;
-  transition: all 0.2s;
+  transition: all .2s;
+
+  @media only screen and (max-width: $bp-middle){
+    margin-right: 5rem;
+  }
 
   svg {
     height: 1.6rem;
@@ -210,4 +214,8 @@
     line-height: 1.5;
     font-weight: 600;
   }
+}
+
+.bookmark__preview{
+  width: 100% !important;
 }
