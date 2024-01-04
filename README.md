@@ -1,6 +1,5 @@
 # <h1 align="center"> Forkify-App</h1>
-<!--Forkify-App i, The Complate Javascript Course - 'Jonas Schmedtmann' eşliğinde  oluşturdum.-->
-## Bu uygulamada forkify API' ını kullanarak yemek tarifi uygulamasını oluşturdum.
+## Jonas Schmedtmann eşliğinde , forkify API' ını kullanarak yemek tarifi uygulamasını oluşturdum.
 
 ##  <h3>🔴Projenin deploy edilmiş versiyonu :<a href="https://forkify-betul.netlify.app/">Forkify-App</a></h3>
  
