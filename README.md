@@ -9,7 +9,7 @@
 * İhtiyacınıza göre porsiyonları ayarlayabilirsiniz.
 * Seçilen tarifin detaylarına erişebilmek için **Directions** butonunu kullanabilirsiniz.
 * Beğendiğiniz tarifleri **yer imine** ekleyebilirsiniz.
-* **Add Recipe** butonundan kendi tariflerinizi ekleyebilir ve bu tariflerinize yer imlerinden erişeilirsiniz.
+* **Add Recipe** butonundan kendi tariflerinizi ekleyebilir ve bu tariflerinize yer imlerinden erişebilirsiniz.
 
 ### 🔍 Uygulamayı kullanırken kullanabileceğiniz bazı anahtar kelimeler :
 
