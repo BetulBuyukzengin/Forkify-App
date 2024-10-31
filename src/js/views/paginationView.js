@@ -7,7 +7,7 @@ class PaginationView extends View {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn--inline');
       if (!btn) return;
-      console.log(btn);
+    
       const goToPage = +btn.dataset.goto;
       handler(goToPage);
     });
@@ -17,7 +17,6 @@ class PaginationView extends View {
     const numPages = Math.ceil(
       this._data.results.length / this._data.resultsPerPage
     );
-    console.log(numPages);
     //* Page 1 and there are other pages
     if (curPage === 1 && numPages > 1) {
       return `
