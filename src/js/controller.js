@@ -46,8 +46,7 @@ const controlSearchResults = async function () {
 
     //4-render initial pagination buttons
     paginationView.render(model.state.search);
-  } catch (err) {
-    console.error(err);
+  } catch {
   }
 };
 const controlPagination = function (goToPage) {
@@ -90,7 +89,6 @@ const controlAddRecipe = async function (newRecipe) {
 
     //* upload the new recipe data
     await model.uploadRecipe(newRecipe);
-    console.log(model.state.recipe);
 
     //* Render recipe
     recipeView.render(model.state.recipe);
@@ -109,7 +107,6 @@ const controlAddRecipe = async function (newRecipe) {
     }, MODAL_CLOSE_SEC * 1000);
   } catch (err) {
     //* uploadRecipe da fırlatılan hatayı yakalamak için try-catch
-    console.error('🧨🧨', err);
     addRecipeView.renderError(err.message);
   }
 };
